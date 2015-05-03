@@ -8,6 +8,7 @@ adminApp.controller('EditCtrl', ['$scope', '$location', '$route', '$routeParams'
 			weekService.getCurrentWeek($scope.emp_id);;;
 		}
 	});
+	$scope.weekService = weekService;
 	
 	$scope.canLeavePage = true;
 	var pendingEdits = 0;
@@ -51,9 +52,8 @@ adminApp.controller('EmployeeEditCtrl', ['$scope', '$http', '$location', functio
 	}
 }]);
 
-adminApp.controller('TimeEditCtrl', ['$scope', 'weekService', function ($scope, weekService) {
-	weekService.getCurrentWeek($scope.emp_id);
-	$scope.weekService = weekService;
+adminApp.controller('TimeEditCtrl', ['$scope', function ($scope) {
+
 }]);
 
 adminApp.controller('EditableCtrl', ['$scope', function ($scope) {

@@ -5,10 +5,12 @@ var mongoskin = require('mongoskin');
  * GET time
  */
 
+/*
 router.get('/:yyyymmdd', function(req, res) {
 	res.json({msg: 'no emp id'});
 });
- 
+*/
+
 router.get('/:emp_id/:yyyymmdd', function(req, res) {
 	var db = req.db;
 	db.collection('times')
