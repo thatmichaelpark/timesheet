@@ -1,0 +1,10 @@
+<h2>Employees</h2>
+<table>
+	<tr ng-repeat="employee in employees | orderBy:'name'">
+		<td>{{employee.name}}</td>
+		<td>{{employee.pin}}</td>
+		<td>{{employee.active ? 'Active' : 'Inactive'}}</td>
+		<td><button ng-click="employeeClick(employee._id)">More</button></td>
+	</tr>
+</table>
+<button ng-click="addClick()">Add Employee</button>

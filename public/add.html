@@ -1,0 +1,15 @@
+<div ng-controller="AddCtrl">
+	<h2>Add Employee</h2>
+	<div>
+		Name:
+		<input ng-model="employee.name" focus></input>
+		Pin:
+		<input ng-model="employee.pin"></input>
+		Active:
+		<input type="checkbox" ng-model="employee.active"></input>
+		<button ng-click="okClick()">OK</button>
+		<button ng-click="cancelClick()">Cancel</button>
+	</div>
+	
+	<button ng-click="mainClick()">Return to main</button>
+</div>

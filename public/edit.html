@@ -1,0 +1,46 @@
+<div ng-controller="EditCtrl">
+	<h2>Employee Detail</h2>
+	<div ng-controller="EmployeeEditCtrl">
+		Name:
+		<span ng-if="!editing">{{employee.name}}</span>
+		<input ng-if="editing" ng-model="employee.name"></input>
+		Pin:
+		<span ng-if="!editing">{{employee.pin}}</span>
+		<input ng-if="editing" ng-model="employee.pin"></input>
+		Active:
+		<input type="checkbox" ng-disabled="!editing" ng-model="employee.active"></input>
+		<button ng-if="!editing" ng-click="editClick()">Edit</button>
+		<button ng-if="editing" ng-click="okClick()">OK</button>
+		<button ng-if="editing" ng-click="cancelClick()">Cancel</button>
+	</div>
+	<div>
+		<table ng-controller="TimeEditCtrl">
+			<tr ng-repeat="day in data.week" ng-controller="EditableCtrl">
+				<td>{{day.date | date:"EEE"}}</td>
+				<td>{{day.date | date:"MM/dd"}}</td>
+				<td>
+					<span ng-if="!editing()">{{day.in1}}</span>
+					<input ng-if="editing()" ng-model="day.in1" size="8"></input>
+				</td>
+				<td>
+					<span ng-if="!editing()">{{day.out1}}</span>
+					<input ng-if="editing()" ng-model="day.out1" size="8"></input>
+				</td>
+				<td>
+					<span ng-if="!editing()">{{day.in2}}</span>
+					<input ng-if="editing()" ng-model="day.in2" size="8"></input>
+				</td>
+				<td>
+					<span ng-if="!editing()">{{day.out2}}</span>
+					<input ng-if="editing()" ng-model="day.out2" size="8"></input>
+				</td>
+				<td>
+					<button ng-if="!editing()" ng-click="editClick()">Edit</button>
+					<button ng-if="editing()" ng-click="okClick()">OK</button>
+					<button ng-if="editing()" ng-click="cancelClick()">Cancel</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<button ng-disabled="!canLeavePage" ng-click="mainClick()">Return to main</button>
+</div>

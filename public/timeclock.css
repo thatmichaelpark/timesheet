@@ -1,0 +1,21 @@
+#keypad button {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    background: #ccc;
+	color: white;
+    float: left;
+	font-size: 20pt;
+	border-radius: 25px;
+	border: solid black 3px;
+}
+
+#keypad button:active {
+	color: black;
+	background: #666;
+}
+
+.clear {
+	clear: both;
+}
