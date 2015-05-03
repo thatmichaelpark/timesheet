@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
-
+var mongoskin = require('mongoskin');
 /*
  * GET time
  */
+
+router.get('/:yyyymmdd', function(req, res) {
+	res.json({msg: 'no emp id'});
+});
  
 router.get('/:emp_id/:yyyymmdd', function(req, res) {
 	var db = req.db;
@@ -31,31 +35,26 @@ router.get('/:emp_id/:yyyymmdd', function(req, res) {
 });
 
 /*
- * PUT to update time.
+ * POST to save (create or update) time
  */
-router.put('/update/:id', function( req, res ) {
-	console.log(req.body);;;
-	var db = req.db;
-	var _id = req.params.id;
-	delete req.body._id;
-	db.collection( 'times' ).update( { _id: mongoskin.helper.toObjectID(req.params.id)},  req.body, function ( err, result ) {
-		res.send( err === null ? { msg: 'success!' } : { msg: err + '??' } );
-	});
-});
-
-/*
- * POST to add time
- */
-router.post('/add', function(req, res) {
+router.post('/save', function(req, res) {
     var db = req.db;
-	console.log(req.body);;;
-
-    db.collection('times').insert(req.body, function(err, result){
-        res.send(
-            (err === null) ? { msg: '' } : { msg: err }
-        );
-    });
-
+	if (req.body._id) {	// update
+		var _id = req.body._id;
+		console.log(_id);;;
+		delete req.body._id;
+		db.collection('times').update( { _id: mongoskin.helper.toObjectID(_id)},  req.body, 
+			function ( err, result ) {
+				res.send( err === null ? { msg: 'updated!' } : { msg: err + '??' } );
+			}
+		);
+	} else {			// create
+		db.collection('times').insert(req.body, function(err, result){
+			res.send(
+				(err === null) ? { msg: 'created!' } : { msg: err }
+			);
+		});
+	}
 });
 
 

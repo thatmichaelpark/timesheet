@@ -7,8 +7,6 @@ adminApp.factory( 'weekService', ['resourceFactory', function(resourceFactory) {
 	var timeResource = resourceFactory.timeResource;
 	
 	function getCurrentWeek(id) {
-		console.log(id);;;
-		timeResource.query();
 		emp_id = id;
 		var today = new Date();
 		var day = today.getDay() == 0 ? 6 : today.getDay() - 1;	// 0-6 Sun-Sat -> 0-6 Mon-Sun
@@ -19,7 +17,6 @@ adminApp.factory( 'weekService', ['resourceFactory', function(resourceFactory) {
 				emp_id: emp_id,
 				yyyymmdd: yyyymmdd(addDays(startOfWeek, i))
 			};
-			console.log(d.emp_id);
 			d = timeResource.get( d );
 			week.push(d);
 		}
@@ -41,7 +38,7 @@ adminApp.factory( 'weekService', ['resourceFactory', function(resourceFactory) {
 		data: data,
 		getCurrentWeek: getCurrentWeek,
 		save: function (index) {
-			timeResource.add(data.week[index]);
+			timeResource.save(data.week[index]);
 		},
 		get: function (index) {
 			console.log('get ' + index);

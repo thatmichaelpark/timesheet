@@ -6,7 +6,6 @@ adminApp.controller('EditCtrl', ['$scope', '$location', '$route', '$routeParams'
 			$scope.emp_id = $routeParams['emp_id'];
 			$scope.getEmployee($scope.emp_id);
 			weekService.getCurrentWeek($scope.emp_id);;;
-			console.log($scope.emp_id);;;
 		}
 	});
 	
@@ -53,7 +52,6 @@ adminApp.controller('EmployeeEditCtrl', ['$scope', '$http', '$location', functio
 }]);
 
 adminApp.controller('TimeEditCtrl', ['$scope', 'weekService', function ($scope, weekService) {
-	console.log('timeeditctrl: ' + $scope.emp_id);;;
 	weekService.getCurrentWeek($scope.emp_id);
 	$scope.weekService = weekService;
 }]);
