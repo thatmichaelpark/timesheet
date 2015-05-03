@@ -15,7 +15,9 @@
 	</div>
 	<div>
 		<table ng-controller="TimeEditCtrl">
-			<tr ng-repeat="day in data.week" ng-controller="EditableCtrl">
+			<tr ng-repeat="day in weekService.data.week" ng-controller="EditableCtrl">
+				<td>{{day.emp_id}}</td>
+				<td>{{day.yyyymmdd}}</td>
 				<td>{{day.date | date:"EEE"}}</td>
 				<td>{{day.date | date:"MM/dd"}}</td>
 				<td>
@@ -36,8 +38,8 @@
 				</td>
 				<td>
 					<button ng-if="!editing()" ng-click="editClick()">Edit</button>
-					<button ng-if="editing()" ng-click="okClick()">OK</button>
-					<button ng-if="editing()" ng-click="cancelClick()">Cancel</button>
+					<button ng-if="editing()" ng-click="okClick($index)">OK</button>
+					<button ng-if="editing()" ng-click="cancelClick($index)">Cancel</button>
 				</td>
 			</tr>
 		</table>

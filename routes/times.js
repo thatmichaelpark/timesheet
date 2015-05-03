@@ -5,17 +5,27 @@ var router = express.Router();
  * GET time
  */
  
-router.get('/:emp_id/:date', function(req, res) {
+router.get('/:emp_id/:yyyymmdd', function(req, res) {
 	var db = req.db;
-	console.log(req.params.emp_id);;;
-	console.log(require('util').inspect(req.params.date));;;
-	
-	db.collection('times').findOne({emp_id: (req.params.emp_id)}, function (err, result) {
+	db.collection('times')
+		.findOne({emp_id: req.params.emp_id, yyyymmdd: req.params.yyyymmdd}, function (err, result) {
 		if (err) {
-			console.log(err);;;
 			res.status(400).json({msg: err.code});;;
 		} else {
-			res.json(result);
+			if (result) {
+				res.json(result);
+			} else {
+				var yyyy = req.params.yyyymmdd.substring(0, 4);
+				var mm = Number(req.params.yyyymmdd.substring(4, 6))-1;
+				var dd = req.params.yyyymmdd.substring(6, 8);
+				var date = new Date(yyyy, mm, dd);
+				res.json({
+					emp_id: req.params.emp_id,
+					yyyymmdd: req.params.yyyymmdd,
+					date: date,
+					in1: '??', out1: '??', in2: '??', out2: '??'
+				});
+			}
 		}
 	});
 });
@@ -38,11 +48,14 @@ router.put('/update/:id', function( req, res ) {
  */
 router.post('/add', function(req, res) {
     var db = req.db;
+	console.log(req.body);;;
+
     db.collection('times').insert(req.body, function(err, result){
         res.send(
             (err === null) ? { msg: '' } : { msg: err }
         );
     });
+
 });
 
 

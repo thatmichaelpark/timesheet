@@ -1,9 +1,11 @@
-adminApp.controller('EditCtrl', ['$scope', '$location', '$route', '$routeParams', function ($scope, $location, $route, $routeParams) {
+adminApp.controller('EditCtrl', ['$scope', '$location', '$route', '$routeParams', 'weekService',
+	function ($scope, $location, $route, $routeParams, weekService) {
 
 	$scope.$on('$routeChangeSuccess', function () {
 		if ($location.path().indexOf('/edit/') == 0) {
 			$scope.emp_id = $routeParams['emp_id'];
 			$scope.getEmployee($scope.emp_id);
+			weekService.getCurrentWeek($scope.emp_id);;;
 			console.log($scope.emp_id);;;
 		}
 	});
@@ -51,8 +53,9 @@ adminApp.controller('EmployeeEditCtrl', ['$scope', '$http', '$location', functio
 }]);
 
 adminApp.controller('TimeEditCtrl', ['$scope', 'weekService', function ($scope, weekService) {
+	console.log('timeeditctrl: ' + $scope.emp_id);;;
 	weekService.getCurrentWeek($scope.emp_id);
-	$scope.data = weekService.data;
+	$scope.weekService = weekService;
 }]);
 
 adminApp.controller('EditableCtrl', ['$scope', function ($scope) {
@@ -68,12 +71,14 @@ adminApp.controller('EditableCtrl', ['$scope', function ($scope) {
 		$scope.bumpPendingEdits(1);
 	}
 	
-	$scope.okClick = function () {
+	$scope.okClick = function (index) {
+		$scope.weekService.save(index);;;
 		editing = false;
 		$scope.bumpPendingEdits(-1);
 	}
 	
-	$scope.cancelClick = function () {
+	$scope.cancelClick = function (index) {
+		$scope.weekService.get(index);
 		editing = false;
 		$scope.bumpPendingEdits(-1);
 	}
