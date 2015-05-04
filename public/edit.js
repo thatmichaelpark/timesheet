@@ -1,11 +1,13 @@
 adminApp.controller('EditCtrl', ['$scope', '$location', '$route', '$routeParams', 'weekService',
 	function ($scope, $location, $route, $routeParams, weekService) {
 
+	var offset = 0;	// #weeks offset
+
 	$scope.$on('$routeChangeSuccess', function () {
 		if ($location.path().indexOf('/edit/') == 0) {
 			$scope.emp_id = $routeParams['emp_id'];
 			$scope.getEmployee($scope.emp_id);
-			weekService.getCurrentWeek($scope.emp_id);;;
+			weekService.getCurrentWeek($scope.emp_id, offset);
 		}
 	});
 	$scope.weekService = weekService;
@@ -16,6 +18,12 @@ adminApp.controller('EditCtrl', ['$scope', '$location', '$route', '$routeParams'
 		pendingEdits += n;
 		$scope.canLeavePage = pendingEdits === 0;
 	}
+
+	$scope.addWeek = function (d) {
+		offset += d;
+		weekService.getCurrentWeek($scope.emp_id, offset);;;
+	}
+
 }]);
 
 adminApp.controller('EmployeeEditCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
@@ -53,7 +61,6 @@ adminApp.controller('EmployeeEditCtrl', ['$scope', '$http', '$location', functio
 }]);
 
 adminApp.controller('TimeEditCtrl', ['$scope', function ($scope) {
-
 }]);
 
 adminApp.controller('EditableCtrl', ['$scope', function ($scope) {

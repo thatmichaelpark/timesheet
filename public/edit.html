@@ -13,8 +13,8 @@
 		<button ng-if="editing" ng-click="okClick()">OK</button>
 		<button ng-if="editing" ng-click="cancelClick()">Cancel</button>
 	</div>
-	<div>
-		<table ng-controller="TimeEditCtrl">
+	<div ng-controller="TimeEditCtrl">
+		<table>
 			<tr ng-repeat="day in weekService.data.week" ng-controller="EditableCtrl">
 				<td>{{day.emp_id}}</td>
 				<td>{{day.yyyymmdd}}</td>
@@ -43,6 +43,8 @@
 				</td>
 			</tr>
 		</table>
+		<button ng-disabled="!canLeavePage" ng-click="addWeek(-1)">Prev week</button>
+		<button ng-disabled="!canLeavePage" ng-click="addWeek(1)">Next week</button>
 	</div>
 	<button ng-disabled="!canLeavePage" ng-click="mainClick()">Return to main</button>
 </div>

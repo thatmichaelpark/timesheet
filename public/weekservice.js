@@ -7,11 +7,11 @@ angular.module('weekModule', ['resourceModule'])
 	
 	var timeResource = resourceFactory.timeResource;
 	
-	function getCurrentWeek(id) {
+	function getCurrentWeek(id, offset) {
 		emp_id = id;
 		var today = new Date();
 		var day = today.getDay() == 0 ? 6 : today.getDay() - 1;	// 0-6 Sun-Sat -> 0-6 Mon-Sun
-		var startOfWeek = addDays(today, -day);
+		var startOfWeek = addDays(today, -day + offset * 7);
 		week = [];
 		for (var i=0; i<7; ++i) {
 			var d = {
