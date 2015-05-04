@@ -77,13 +77,13 @@ adminApp.controller('EditableCtrl', ['$scope', function ($scope) {
 	}
 	
 	$scope.okClick = function (index) {
-		$scope.weekService.save(index);;;
+		$scope.weekService.data.week[index].$save();
 		editing = false;
 		$scope.bumpPendingEdits(-1);
 	}
 	
 	$scope.cancelClick = function (index) {
-		$scope.weekService.get(index);
+		$scope.weekService.data.week[index].$get();
 		editing = false;
 		$scope.bumpPendingEdits(-1);
 	}

@@ -38,12 +38,6 @@ angular.module('weekModule', ['resourceModule'])
 	return {
 		data: data,
 		getCurrentWeek: getCurrentWeek,
-		save: function (index) {
-			timeResource.save(data.week[index]);
-		},
-		get: function (index) {
-			data.week[index] = timeResource.get(data.week[index]);
-		}
 	}
 	
 	

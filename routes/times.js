@@ -12,6 +12,7 @@ router.get('/:yyyymmdd', function(req, res) {
 */
 
 router.get('/:emp_id/:yyyymmdd', function(req, res) {
+	console.log('getting');;;
 	var db = req.db;
 	db.collection('times')
 		.findOne({emp_id: req.params.emp_id, yyyymmdd: req.params.yyyymmdd}, function (err, result) {
@@ -41,19 +42,19 @@ router.get('/:emp_id/:yyyymmdd', function(req, res) {
  */
 router.post('/save', function(req, res) {
     var db = req.db;
+	console.log('saving');;;
 	if (req.body._id) {	// update
 		var _id = req.body._id;
-		console.log(_id);;;
 		delete req.body._id;
 		db.collection('times').update( { _id: mongoskin.helper.toObjectID(_id)},  req.body, 
 			function ( err, result ) {
-				res.send( err === null ? { msg: 'updated!' } : { msg: err + '??' } );
+				res.send( err === null ? req.body : { msg: err + '??' } );
 			}
 		);
 	} else {			// create
 		db.collection('times').insert(req.body, function(err, result){
 			res.send(
-				(err === null) ? { msg: 'created!' } : { msg: err }
+				(err === null) ? req.body : { msg: err }
 			);
 		});
 	}

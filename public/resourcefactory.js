@@ -5,7 +5,7 @@ angular.module('resourceModule', ['ngResource'])
 
 .factory( 'resourceFactory', function ( $resource, baseTimeUrl ) {
 	return {
-		timeResource: $resource( baseTimeUrl, {},
+		timeResource: $resource( baseTimeUrl, {emp_id: '@emp_id', yyyymmdd: '@yyyymmdd'},
 			{
 				get: { method : 'GET', url : baseTimeUrl + ':emp_id/:yyyymmdd' },
 				save: { method : 'POST', url : baseTimeUrl + 'save/' }
