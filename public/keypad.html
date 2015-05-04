@@ -1,0 +1,17 @@
+	<div ng-controller="KeypadCtrl">
+		<input type="password" ng-model="input"></input>
+		<div id="keypad">
+			<button ng-click="digit('1')">1</button>
+			<button ng-click="digit('2')">2</button>
+			<button ng-click="digit('3')">3</button>
+			<button ng-click="digit('4')" class="clear">4</button>
+			<button ng-click="digit('5')">5</button>
+			<button ng-click="digit('6')">6</button>
+			<button ng-click="digit('7')" class="clear">7</button>
+			<button ng-click="digit('8')">8</button>
+			<button ng-click="digit('9')">9</button>
+			<button ng-click="bksp()" class="clear">BkSp</button>
+			<button ng-click="digit('0')">0</button>
+			<button ng-click="enter()">Enter</button>
+		</div>
+	</div>

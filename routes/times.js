@@ -12,7 +12,6 @@ router.get('/:yyyymmdd', function(req, res) {
 */
 
 router.get('/:emp_id/:yyyymmdd', function(req, res) {
-	console.log('getting');;;
 	var db = req.db;
 	db.collection('times')
 		.findOne({emp_id: req.params.emp_id, yyyymmdd: req.params.yyyymmdd}, function (err, result) {
@@ -30,7 +29,7 @@ router.get('/:emp_id/:yyyymmdd', function(req, res) {
 					emp_id: req.params.emp_id,
 					yyyymmdd: req.params.yyyymmdd,
 					date: date,
-					in1: '??', out1: '??', in2: '??', out2: '??'
+					in1: '', out1: '', in2: '', out2: ''
 				});
 			}
 		}
@@ -42,7 +41,6 @@ router.get('/:emp_id/:yyyymmdd', function(req, res) {
  */
 router.post('/save', function(req, res) {
     var db = req.db;
-	console.log('saving');;;
 	if (req.body._id) {	// update
 		var _id = req.body._id;
 		delete req.body._id;

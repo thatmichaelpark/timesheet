@@ -3,25 +3,17 @@
 	<head>
 		<title>Timecard 0.00</title>
 		<link href="timeclock.css" rel="stylesheet">
-		<script src="angular.js"></script>
+		<script src="scripts/angular.js"></script>
+		<script src="scripts/angular-resource.js"></script>
 		<script src="timeclock.js"></script>
+		<script src="employeecard.js"></script>
+		<script src="weekservice.js"></script>
+		<script src="resourcefactory.js"></script>
 	</head>
-	<body ng-controller="KeypadCtrl">
-		<input type="password" ng-model="input"></input>
-		<input ng-model="input"></input>
-		<div id="keypad">
-			<button ng-click="digit('1')">1</button>
-			<button ng-click="digit('2')">2</button>
-			<button ng-click="digit('3')">3</button>
-			<button ng-click="digit('4')" class="clear">4</button>
-			<button ng-click="digit('5')">5</button>
-			<button ng-click="digit('6')">6</button>
-			<button ng-click="digit('7')" class="clear">7</button>
-			<button ng-click="digit('8')">8</button>
-			<button ng-click="digit('9')">9</button>
-			<button ng-click="bksp()" class="clear">BkSp</button>
-			<button ng-click="digit('0')">0</button>
-			<button ng-click="enter()">Enter</button>
+	<body ng-controller="TimeclockCtrl">
+		<div>
+		{{time | date:"EEEE MMM d, y h:mm:ss"}}
 		</div>
+		<ng-include src="view"></ng-include>
 	</body>
 </html>

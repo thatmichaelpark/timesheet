@@ -1,0 +1,29 @@
+<div ng-controller="EmployeeCardCtrl">
+	<div>{{data.employee.name}}</div>
+	<div>
+		<table>
+			<tr ng-repeat="day in weekService.data.week">
+				<td>{{day.date | date:"EEE"}}</td>
+				<td>{{day.date | date:"MM/dd"}}</td>
+				<td>
+					{{day.in1}}
+				</td>
+				<td>
+					{{day.out1}}
+				</td>
+				<td>
+					{{day.in2}}
+				</td>
+				<td>
+					{{day.out2}}
+				</td>
+			</tr>
+		</table>
+		<button ng-click="addWeek(-1)">Prev week</button>
+		<button ng-click="addWeek(1)">Next week</button>
+	</div>
+	<button ng-disabled="!weekService.data.canCheckIn">Clock In</button>
+	<button ng-disabled="!weekService.data.canCheckOut">Clock Out</button>
+	<button ng-click="cancelClick()">Cancel</button>
+
+</div>

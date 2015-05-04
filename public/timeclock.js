@@ -1,8 +1,22 @@
-var timeclockApp = angular.module('timeclockApp', []);
+var timeclockApp = angular.module('timeclockApp', ['weekModule']);
+
+timeclockApp.controller('TimeclockCtrl', ['$scope', '$interval', function ($scope, $interval) {
+	
+	$scope.view = "keypad.html";
+	$scope.data = {};
+
+	$scope.changeView = function (v) {
+		$scope.view = v;
+	}
+	
+	$interval(function () {
+		$scope.time = new Date();
+	}, 1000);
+}]);
 
 timeclockApp.controller('KeypadCtrl', ['$scope', '$http', function ($scope, $http) {
 
-	$scope.input = 'howdy';
+	$scope.input = '314';
 
 	$scope.digit = function(digit) {
 		$scope.input += digit;
@@ -15,18 +29,14 @@ timeclockApp.controller('KeypadCtrl', ['$scope', '$http', function ($scope, $htt
 	};
 
 	$scope.enter = function() {
-		$http.get('/employee/' + $scope.input, {code: $scope.input})
+		$http.get('/employee/bypin/' + $scope.input, {pin: $scope.input})
 		.success(function(data, status, headers, config) {
-			alert(data.name);
+			$scope.data.employee = data;
+			$scope.changeView('employeecard.html');
 		})
 		.error(function(data, status, headers, config) {
 			alert(data.msg);
 		});
-		var date = new Date('Sat Jan 18 2015 20:27:21 GMT-0700 (Pacific Daylight Time)');
-		console.log(JSON.stringify(date));
-		console.log(date.toString());
-		var d = JSON.parse('"2015-01-19T00:27:21.000Z"');
-		console.log(new Date(d));
 	};
 	
 }]);

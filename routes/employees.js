@@ -30,6 +30,18 @@ router.get('/:id', function(req, res) {
 	});
 });
 
+router.get('/bypin/:pin', function(req, res) {
+	var db = req.db;
+	db.collection('employees').findOne({pin: req.params.pin}, function (err, result) {
+		if (err) {
+			console.log(err);;;
+			res.status(400).json({msg: err.code});;;
+		} else {
+			res.json(result);
+		}
+	});
+});
+
 /*
  * PUT to update employee.
  */

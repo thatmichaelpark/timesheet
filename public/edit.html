@@ -16,8 +16,6 @@
 	<div ng-controller="TimeEditCtrl">
 		<table>
 			<tr ng-repeat="day in weekService.data.week" ng-controller="EditableCtrl">
-				<td>{{day.emp_id}}</td>
-				<td>{{day.yyyymmdd}}</td>
 				<td>{{day.date | date:"EEE"}}</td>
 				<td>{{day.date | date:"MM/dd"}}</td>
 				<td>
