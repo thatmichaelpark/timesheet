@@ -1,4 +1,4 @@
-var adminApp = angular.module('adminApp', ['ngResource', 'ngRoute']);
+var adminApp = angular.module('adminApp', ['resourceModule', 'weekModule', 'ngResource', 'ngRoute']);
 
 adminApp.controller('AdminCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 

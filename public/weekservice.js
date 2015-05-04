@@ -1,4 +1,5 @@
-adminApp.factory( 'weekService', ['resourceFactory', function(resourceFactory) {
+angular.module('weekModule', ['resourceModule'])
+.factory( 'weekService', ['resourceFactory', function(resourceFactory) {
 
 	var week;
 	var data = {};

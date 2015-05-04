@@ -1,10 +1,11 @@
 var baseUrl = 'http://localhost/';
-adminApp.constant( 'baseEmployeeUrl', baseUrl + 'employee/' );
-adminApp.constant( 'baseTimeUrl', baseUrl + 'times/' );
+angular.module('resourceModule', ['ngResource'])
+.constant( 'baseEmployeeUrl', baseUrl + 'employee/' )
+.constant( 'baseTimeUrl', baseUrl + 'times/' )
 
-adminApp.factory( 'resourceFactory', function ( $resource, baseTimeUrl ) {
+.factory( 'resourceFactory', function ( $resource, baseTimeUrl ) {
 	return {
-		timeResource: $resource( baseTimeUrl + ':emp_id/:yyyymmdd', {emp_id: '@emp_id'},
+		timeResource: $resource( baseTimeUrl, {},
 			{
 				get: { method : 'GET', url : baseTimeUrl + ':emp_id/:yyyymmdd' },
 				save: { method : 'POST', url : baseTimeUrl + 'save/' }
