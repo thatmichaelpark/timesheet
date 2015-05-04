@@ -42,7 +42,7 @@ angular.module('weekModule', ['resourceModule'])
 			timeResource.save(data.week[index]);
 		},
 		get: function (index) {
-			console.log('get ' + index);
+			data.week[index] = timeResource.get(data.week[index]);
 		}
 	}
 	
