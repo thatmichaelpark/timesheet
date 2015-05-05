@@ -1,14 +1,42 @@
-#keypad button {
-    display: inline-block;
+#timeclock {
+	border: solid black 2px;
+}
+
+#date {
+	font-size: 15pt;
+}
+
+#time {
+	font-size: 25pt;
+}
+
+#name {
+	font-size: 25pt;
+}
+
+div {
+	text-align: center;
+}
+
+button {
     width: 80px;
     height: 80px;
     margin: 5px;
     background: #ccc;
 	color: white;
-    float: left;
+//    float: left;
 	font-size: 20pt;
 	border-radius: 25px;
 	border: solid black 3px;
+}
+
+button:disabled {
+    background: #eee;
+	border-color: #000;
+}
+
+button.wide {
+    width: 160px;
 }
 
 #keypad button:active {
@@ -16,6 +44,8 @@
 	background: #666;
 }
 
-.clear {
-	clear: both;
+table {
+	margin: auto;
+	width: 500px;
+	border: solid red 1px;
 }

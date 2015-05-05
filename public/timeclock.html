@@ -11,9 +11,14 @@
 		<script src="resourcefactory.js"></script>
 	</head>
 	<body ng-controller="TimeclockCtrl">
-		<div>
-		{{time | date:"EEEE MMM d, y h:mm:ss"}}
+		<div id="timeclock" class="center">
+			<div id="date" class="center">
+				{{time | date:"EEEE MMM d, y"}}
+			</div>
+			<div id="time" class="center">
+				{{time | date:"h:mm:ss"}}
+			</div>
+			<ng-include src="view"></ng-include>
 		</div>
-		<ng-include src="view"></ng-include>
 	</body>
 </html>

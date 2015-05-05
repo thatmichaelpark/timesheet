@@ -4,6 +4,7 @@ timeclockApp.controller('TimeclockCtrl', ['$scope', '$interval', function ($scop
 	
 	$scope.view = "keypad.html";
 	$scope.data = {};
+	$scope.time = new Date();
 
 	$scope.changeView = function (v) {
 		$scope.view = v;
