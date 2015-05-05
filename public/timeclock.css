@@ -1,5 +1,4 @@
 #timeclock {
-	border: solid black 2px;
 }
 
 #date {
@@ -21,7 +20,7 @@ div {
 button {
     width: 80px;
     height: 80px;
-    margin: 5px;
+    margin: 3px;
     background: #ccc;
 	color: white;
 	font-size: 18pt;
