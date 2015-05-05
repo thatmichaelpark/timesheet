@@ -19,20 +19,20 @@
 				<td>{{day.date | date:"EEE"}}</td>
 				<td>{{day.date | date:"MM/dd"}}</td>
 				<td>
-					<span ng-if="!editing()">{{day.in1}}</span>
-					<input ng-if="editing()" ng-model="day.in1" size="8"></input>
+					<span ng-if="!editing()">{{day.times[0]}}</span>
+					<input ng-if="editing()" ng-model="day.times[0]" size="8"></input>
 				</td>
 				<td>
-					<span ng-if="!editing()">{{day.out1}}</span>
-					<input ng-if="editing()" ng-model="day.out1" size="8"></input>
+					<span ng-if="!editing()">{{day.times[1]}}</span>
+					<input ng-if="editing()" ng-model="day.times[1]" size="8"></input>
 				</td>
 				<td>
-					<span ng-if="!editing()">{{day.in2}}</span>
-					<input ng-if="editing()" ng-model="day.in2" size="8"></input>
+					<span ng-if="!editing()">{{day.times[2]}}</span>
+					<input ng-if="editing()" ng-model="day.times[2]" size="8"></input>
 				</td>
 				<td>
-					<span ng-if="!editing()">{{day.out2}}</span>
-					<input ng-if="editing()" ng-model="day.out2" size="8"></input>
+					<span ng-if="!editing()">{{day.times[3]}}</span>
+					<input ng-if="editing()" ng-model="day.times[3]" size="8"></input>
 				</td>
 				<td>
 					<button ng-if="!editing()" ng-click="editClick()">Edit</button>

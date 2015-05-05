@@ -1,6 +1,6 @@
 angular.module('timeclockApp').controller('EmployeeCardCtrl', function ($scope, weekService, resourceFactory) {
 
-	$scope.cancelClick = function () {
+	$scope.okClick = function () {
 		$scope.changeView('keypad.html');
 	}
 

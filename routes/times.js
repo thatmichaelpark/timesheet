@@ -29,7 +29,7 @@ router.get('/:emp_id/:yyyymmdd', function(req, res) {
 					emp_id: req.params.emp_id,
 					yyyymmdd: req.params.yyyymmdd,
 					date: date,
-					in1: '', out1: '', in2: '', out2: ''
+					times: []
 				});
 			}
 		}

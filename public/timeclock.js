@@ -16,7 +16,7 @@ timeclockApp.controller('TimeclockCtrl', ['$scope', '$interval', function ($scop
 
 timeclockApp.controller('KeypadCtrl', ['$scope', '$http', function ($scope, $http) {
 
-	$scope.input = '314';
+	$scope.input = '';
 
 	$scope.digit = function(digit) {
 		$scope.input += digit;
@@ -36,6 +36,7 @@ timeclockApp.controller('KeypadCtrl', ['$scope', '$http', function ($scope, $htt
 		})
 		.error(function(data, status, headers, config) {
 			alert(data.msg);
+			$scope.input = '';
 		});
 	};
 	

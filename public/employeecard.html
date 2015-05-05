@@ -5,25 +5,17 @@
 			<tr ng-repeat="day in weekService.data.week">
 				<td>{{day.date | date:"EEE"}}</td>
 				<td>{{day.date | date:"MM/dd"}}</td>
-				<td>
-					{{day.in1}}
-				</td>
-				<td>
-					{{day.out1}}
-				</td>
-				<td>
-					{{day.in2}}
-				</td>
-				<td>
-					{{day.out2}}
-				</td>
+				<td>{{day.times[0]}}</td>
+				<td>{{day.times[1]}}</td>
+				<td>{{day.times[2]}}</td>
+				<td>{{day.times[3]}}</td>
 			</tr>
 		</table>
 		<button ng-click="addWeek(-1)">Prev week</button>
 		<button ng-click="addWeek(1)">Next week</button>
 	</div>
-	<button ng-disabled="!weekService.data.canCheckIn">Clock In</button>
-	<button ng-disabled="!weekService.data.canCheckOut">Clock Out</button>
-	<button ng-click="cancelClick()">Cancel</button>
+	<button ng-disabled="!weekService.data.canClockIn" ng-click="weekService.clockIt()">Clock In</button>
+	<button ng-disabled="!weekService.data.canClockOut" ng-click="weekService.clockIt()">Clock Out</button>
+	<button ng-click="okClick()">OK</button>
 
 </div>

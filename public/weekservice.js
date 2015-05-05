@@ -4,6 +4,7 @@ angular.module('weekModule', ['resourceModule'])
 	var week;
 	var data = {};
 	var emp_id;
+	var todaysEntry;
 	
 	var timeResource = resourceFactory.timeResource;
 	
@@ -23,19 +24,12 @@ angular.module('weekModule', ['resourceModule'])
 			week.push(d);
 			
 			if (j == 0) {
-				d.$promise.then(function (x) {console.log(x);
-					data.canCheckIn = false;
-					data.canCheckOut = false;
-					if (x.out2 !== '') {
-						// nada
-					} else if (x.in2 !== '') {
-						data.canCheckOut = true;
-					} else if (x.out1 !== '') {
-						data.canCheckIn = true;
-					} else if (x.in1 !== '') {
-						data.canCheckOut = true;
+				d.$promise.then(function (x) {
+					todaysEntry = x;
+					if (todaysEntry.times.length < 4) {
+						data.canClockIn = !(data.canClockOut = (todaysEntry.times.length & 1) !== 0);
 					} else {
-						data.canCheckIn = true;
+						data.canClockIn = data.canClockOut = false;
 					}
 				});;;
 			}
@@ -47,17 +41,25 @@ angular.module('weekModule', ['resourceModule'])
 	function yyyymmdd(d) {
 		return d.getFullYear() + twoDigit(d.getMonth()+1) + twoDigit(d.getDate());
 		
-		function twoDigit(n) {
-			return (n < 10 ? '0' : '') + n;
-		}
+	}
+	function twoDigit(n) {
+		return (n < 10 ? '0' : '') + n;
 	}
 	function addDays(date, days) {
 		return new Date(date.getFullYear(), date.getMonth(), date.getDate() + days);
 	}
 
+	function clockIt() {
+		var now = new Date(Date.now() + 30 * 1000);	// add 30s to round to nearest minute
+		todaysEntry.times.push(twoDigit(now.getHours())+':'+twoDigit(now.getMinutes()));
+		todaysEntry.$save();
+		data.canClockIn = data.canClockOut = false;
+	}
+	
 	return {
 		data: data,
 		getCurrentWeek: getCurrentWeek,
+		clockIt: clockIt
 	}
 	
 	
