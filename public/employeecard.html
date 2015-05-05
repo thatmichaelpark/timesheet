@@ -11,8 +11,8 @@
 				<td>{{day.times[3] || '...'}}</td>
 			</tr>
 		</table>
-		<button class="wide" ng-click="addWeek(-1)">Prev week</button>
-		<button class="wide" ng-click="addWeek(1)">Next week</button>
+		<button ng-click="addWeek(-1)">&#8679;</button>
+		<button ng-click="addWeek(1)">&#8681;</button>
 	</div>
 	<button class="wide" ng-disabled="!weekService.data.canClockIn" ng-click="weekService.clockIt()">Clock In</button>
 	<button class="wide" ng-disabled="!weekService.data.canClockOut" ng-click="weekService.clockIt()">Clock Out</button>

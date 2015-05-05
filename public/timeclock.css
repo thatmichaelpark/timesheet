@@ -24,15 +24,14 @@ button {
     margin: 5px;
     background: #ccc;
 	color: white;
-//    float: left;
-	font-size: 20pt;
-	border-radius: 25px;
-	border: solid black 3px;
+	font-size: 18pt;
+	border-radius: 40px;
+	border: solid #888 3px;
 }
 
 button:disabled {
     background: #eee;
-	border-color: #000;
+	border-color: #bbb;
 }
 
 button.wide {
@@ -47,5 +46,5 @@ button.wide {
 table {
 	margin: auto;
 	width: 500px;
-	border: solid red 1px;
+	border: solid black 1px;
 }
