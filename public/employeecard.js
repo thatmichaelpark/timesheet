@@ -15,7 +15,4 @@ angular.module('timeclockApp').controller('EmployeeCardCtrl', function ($scope, 
 		offset += d;
 		weekService.getCurrentWeek($scope.data.employee._id, offset);
 	}
-	
-	$scope.clockedIn = true;
-	$scope.clockedOut = false;
 });

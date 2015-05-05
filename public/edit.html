@@ -15,31 +15,43 @@
 	</div>
 	<div ng-controller="TimeEditCtrl">
 		<table>
-			<tr ng-repeat="day in weekService.data.week" ng-controller="EditableCtrl">
-				<td>{{day.date | date:"EEE"}}</td>
-				<td>{{day.date | date:"MM/dd"}}</td>
-				<td>
-					<span ng-if="!editing()">{{day.times[0]}}</span>
-					<input ng-if="editing()" ng-model="day.times[0]" size="8"></input>
-				</td>
-				<td>
-					<span ng-if="!editing()">{{day.times[1]}}</span>
-					<input ng-if="editing()" ng-model="day.times[1]" size="8"></input>
-				</td>
-				<td>
-					<span ng-if="!editing()">{{day.times[2]}}</span>
-					<input ng-if="editing()" ng-model="day.times[2]" size="8"></input>
-				</td>
-				<td>
-					<span ng-if="!editing()">{{day.times[3]}}</span>
-					<input ng-if="editing()" ng-model="day.times[3]" size="8"></input>
-				</td>
-				<td>
-					<button ng-if="!editing()" ng-click="editClick()">Edit</button>
-					<button ng-if="editing()" ng-click="okClick($index)">OK</button>
-					<button ng-if="editing()" ng-click="cancelClick($index)">Cancel</button>
-				</td>
-			</tr>
+			<thead>
+				<tr>
+					<th>Day</th>
+					<th>Date</th>
+					<th>In</th>
+					<th>Out</th>
+					<th>In</th>
+					<th>Out</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="day in weekService.data.week" ng-controller="EditableCtrl">
+					<td>{{day.date | date:"EEE"}}</td>
+					<td>{{day.date | date:"MM/dd"}}</td>
+					<td>
+						<span ng-if="!editing()">{{(day.times[0] | date:"h:mma") || '...'}}</span>
+						<input ng-if="editing()" ng-model="day.times[0]" size="8"></input>
+					</td>
+					<td>
+						<span ng-if="!editing()">{{(day.times[1] | date:"h:mma") || '...'}}</span>
+						<input ng-if="editing()" ng-model="day.times[1]" size="8"></input>
+					</td>
+					<td>
+						<span ng-if="!editing()">{{(day.times[2] | date:"h:mma") || '...'}}</span>
+						<input ng-if="editing()" ng-model="day.times[2]" size="8"></input>
+					</td>
+					<td>
+						<span ng-if="!editing()">{{(day.times[3] | date:"h:mma") || '...'}}</span>
+						<input ng-if="editing()" ng-model="day.times[3]" size="8"></input>
+					</td>
+					<td>
+						<button ng-if="!editing()" ng-click="editClick()">Edit</button>
+						<button ng-if="editing()" ng-click="okClick($index)">OK</button>
+						<button ng-if="editing()" ng-click="cancelClick($index)">Cancel</button>
+					</td>
+				</tr>
+			</tbody>
 		</table>
 		<button ng-disabled="!canLeavePage" ng-click="addWeek(-1)">Prev week</button>
 		<button ng-disabled="!canLeavePage" ng-click="addWeek(1)">Next week</button>

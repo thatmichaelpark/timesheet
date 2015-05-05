@@ -51,7 +51,8 @@ angular.module('weekModule', ['resourceModule'])
 
 	function clockIt() {
 		var now = new Date(Date.now() + 30 * 1000);	// add 30s to round to nearest minute
-		todaysEntry.times.push(twoDigit(now.getHours())+':'+twoDigit(now.getMinutes()));
+		now.setSeconds(0, 0);
+		todaysEntry.times.push(now);
 		todaysEntry.$save();
 		data.canClockIn = data.canClockOut = false;
 	}

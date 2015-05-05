@@ -2,14 +2,26 @@
 	<div id="name">{{data.employee.name}}</div>
 	<div>
 		<table>
-			<tr ng-repeat="day in weekService.data.week">
-				<td>{{day.date | date:"EEE"}}</td>
-				<td>{{day.date | date:"MM/dd"}}</td>
-				<td>{{day.times[0] || '...'}}</td>
-				<td>{{day.times[1] || '...'}}</td>
-				<td>{{day.times[2] || '...'}}</td>
-				<td>{{day.times[3] || '...'}}</td>
-			</tr>
+			<thead>
+				<tr>
+					<th>Day</th>
+					<th>Date</th>
+					<th>In</th>
+					<th>Out</th>
+					<th>In</th>
+					<th>Out</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="day in weekService.data.week">
+					<td>{{day.date | date:"EEE"}}</td>
+					<td>{{day.date | date:"MM/dd"}}</td>
+					<td>{{(day.times[0] | date:"h:mma") || '...'}}</td>
+					<td>{{(day.times[1] | date:"h:mma") || '...'}}</td>
+					<td>{{(day.times[2] | date:"h:mma") || '...'}}</td>
+					<td>{{(day.times[3] | date:"h:mma") || '...'}}</td>
+				</tr>
+			</tbody>
 		</table>
 		<button ng-click="addWeek(-1)">&#8679;</button>
 		<button ng-click="addWeek(1)">&#8681;</button>
