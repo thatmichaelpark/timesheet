@@ -1,6 +1,6 @@
 To do:
 * time editing: in h:mm format
 * time editing: deleting entries at end should shorten array
-* empty pin should throw error
+* empty pin should throw error (temp fix: disabled Enter on empty pin)
 * pay period reports
 
