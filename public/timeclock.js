@@ -37,6 +37,7 @@ timeclockApp.controller('KeypadCtrl', ['$scope', '$http', function ($scope, $htt
 				$scope.changeView('employeecard.html');
 			} else {
 				alert('Employee is inactive');
+				$scope.input = '';
 			}
 		})
 		.error(function(data, status, headers, config) {
