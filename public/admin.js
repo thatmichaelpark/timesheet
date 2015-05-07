@@ -29,8 +29,12 @@ adminApp.controller('AdminCtrl', ['$scope', '$http', '$location', function ($sco
 	}
 	
 	$scope.addClick = function() {
-		$scope.employee = { name: 'add name', pin: '123', active: true };
+		$scope.employee = { name: '', pin: '', active: true };
 		$location.path('/add');
+	}
+
+	$scope.reportsClick = function () {
+		$location.path('/reports');
 	}
 	
 	$scope.mainClick = function () {
@@ -76,6 +80,7 @@ adminApp.config(function ($routeProvider, $locationProvider) {
 	$routeProvider.when('/main', { templateUrl: '/main.html' } );
 	$routeProvider.when('/edit/:emp_id', { templateUrl: '/edit.html' } );
 	$routeProvider.when('/add', { templateUrl: '/add.html' } );
+	$routeProvider.when('/reports', { templateUrl: '/reports.html' } );
 	$routeProvider.otherwise( { templateUrl: '/main.html' } );
 });
 	

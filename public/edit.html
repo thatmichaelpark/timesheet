@@ -31,24 +31,24 @@
 					<td>{{day.date | date:"MM/dd"}}</td>
 					<td>
 						<span ng-if="!editing()">{{(day.times[0] | date:"h:mma") || '...'}}</span>
-						<input ng-if="editing()" ng-model="day.times[0]" size="8"></input>
+						<input ng-if="editing()" ng-model="times[0]" size="8"></input>
 					</td>
 					<td>
 						<span ng-if="!editing()">{{(day.times[1] | date:"h:mma") || '...'}}</span>
-						<input ng-if="editing()" ng-model="day.times[1]" size="8"></input>
+						<input ng-if="editing()" ng-model="times[1]" size="8"></input>
 					</td>
 					<td>
 						<span ng-if="!editing()">{{(day.times[2] | date:"h:mma") || '...'}}</span>
-						<input ng-if="editing()" ng-model="day.times[2]" size="8"></input>
+						<input ng-if="editing()" ng-model="times[2]" size="8"></input>
 					</td>
 					<td>
 						<span ng-if="!editing()">{{(day.times[3] | date:"h:mma") || '...'}}</span>
-						<input ng-if="editing()" ng-model="day.times[3]" size="8"></input>
+						<input ng-if="editing()" ng-model="times[3]" size="8"></input>
 					</td>
 					<td>
-						<button ng-if="!editing()" ng-click="editClick()">Edit</button>
-						<button ng-if="editing()" ng-click="okClick($index)">OK</button>
-						<button ng-if="editing()" ng-click="cancelClick($index)">Cancel</button>
+						<button ng-if="!editing()" ng-click="editClick(day)">Edit</button>
+						<button ng-if="editing()" ng-click="okClick(day)">OK</button>
+						<button ng-if="editing()" ng-click="cancelClick(day)">Cancel</button>
 					</td>
 				</tr>
 			</tbody>
