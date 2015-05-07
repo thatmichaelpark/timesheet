@@ -33,7 +33,11 @@ timeclockApp.controller('KeypadCtrl', ['$scope', '$http', function ($scope, $htt
 		$http.get('/employee/bypin/' + $scope.input, {pin: $scope.input})
 		.success(function(data, status, headers, config) {
 			$scope.data.employee = data;
-			$scope.changeView('employeecard.html');
+			if ($scope.data.employee.active) {
+				$scope.changeView('employeecard.html');
+			} else {
+				alert('Employee is inactive');
+			}
 		})
 		.error(function(data, status, headers, config) {
 			alert(data.msg);

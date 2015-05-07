@@ -18,6 +18,18 @@ router.get('/', function(req, res) {
 	});
 });
 
+router.get('/active', function(req, res) {
+	var db = req.db;
+	db.collection('employees').find({active: true}).toArray(function (err, items) {
+		if (err) {
+			console.log(err);;;
+			res.status(400).json({msg: err.code});;;
+		} else {
+			res.json(items);
+		}
+	});
+});
+
 router.get('/:id', function(req, res) {
 	var db = req.db;
 	db.collection('employees').findOne({_id: mongoskin.helper.toObjectID(req.params.id)}, function (err, result) {
