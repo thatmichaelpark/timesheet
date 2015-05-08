@@ -26,7 +26,7 @@ adminApp.controller('EditCtrl', ['$scope', '$location', '$route', '$routeParams'
 
 }]);
 
-adminApp.controller('EmployeeEditCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+adminApp.controller('EmployeeEditCtrl', ['$scope', '$location', function ($scope, $location) {
 
 	$scope.mainClick = function () {
 		$scope.getEmployees();
@@ -41,20 +41,13 @@ adminApp.controller('EmployeeEditCtrl', ['$scope', '$http', '$location', functio
 	}
 	
 	$scope.okClick = function () {
-		$http.put('/employee/update/'+$scope.employee._id, $scope.employee)
-		.success(function(data, status, headers, config) {
-			console.log(data);
-		})
-		.error(function(data, status, headers, config) {
-			alert(data);
-		});
-
+		$scope.employee.$update();
 		$scope.editing = false;
 		$scope.bumpPendingEdits(-1);
 	}
 	
 	$scope.cancelClick = function () {
-		$scope.getEmployee($scope.employee._id);
+		$scope.employee.$get();
 		$scope.editing = false;
 		$scope.bumpPendingEdits(-1);
 	}

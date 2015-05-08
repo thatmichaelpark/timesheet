@@ -1,5 +1,4 @@
 To do:
-* employee resource
 * get active employees
 * pay period reports
 * adding an employee: list not refreshed? problem is random
@@ -9,3 +8,5 @@ Done:
 * time editing: in h:mm format (and others)
 * time editing: deleting entries at end should shorten array
 * keypad allows only active employees
+* employee resource; eliminated dependency on $http
+

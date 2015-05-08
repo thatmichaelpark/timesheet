@@ -15,7 +15,7 @@ timeclockApp.controller('TimeclockCtrl', ['$scope', '$interval', function ($scop
 	}, 1000);
 }]);
 
-timeclockApp.controller('KeypadCtrl', ['$scope', '$http', function ($scope, $http) {
+timeclockApp.controller('KeypadCtrl', ['$scope', 'resourceFactory', function ($scope, resourceFactory) {
 
 	$scope.input = '';
 
@@ -30,19 +30,14 @@ timeclockApp.controller('KeypadCtrl', ['$scope', '$http', function ($scope, $htt
 	};
 
 	$scope.enter = function() {
-		$http.get('/employee/bypin/' + $scope.input, {pin: $scope.input})
-		.success(function(data, status, headers, config) {
-			$scope.data.employee = data;
+		$scope.data.employee = resourceFactory.employeeResource.getbypin({pin: $scope.input});
+		$scope.data.employee.$promise.then(function (x) {
 			if ($scope.data.employee.active) {
 				$scope.changeView('employeecard.html');
 			} else {
 				alert('Employee is inactive');
 				$scope.input = '';
 			}
-		})
-		.error(function(data, status, headers, config) {
-			alert(data.msg);
-			$scope.input = '';
 		});
 	};
 	

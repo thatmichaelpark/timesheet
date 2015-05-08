@@ -1,24 +1,16 @@
 var adminApp = angular.module('adminApp', ['resourceModule', 'weekModule', 'ngResource', 'ngRoute']);
 
-adminApp.controller('AdminCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+adminApp.controller('AdminCtrl', ['$scope', '$location', 'resourceFactory', 
+						function ($scope, $location, resourceFactory) {
 
+	var employeeResource = resourceFactory.employeeResource;
+	
 	$scope.getEmployees = function () {
-		$http.get('/employee/')
-		.success(function(data, status, headers, config) {
-			$scope.employees = data;
-		})
-		.error(function(data, status, headers, config) {
-			alert(data.msg);
-		});
+		$scope.employees = employeeResource.query();
 	};
+
 	$scope.getEmployee = function (id) {
-		$http.get('/employee/'+id)
-		.success(function(data, status, headers, config) {
-			$scope.employee = data;
-		})
-		.error(function(data, status, headers, config) {
-			alert(data);
-		});
+		$scope.employee = employeeResource.get({_id: id});
 	};
 	
 	$scope.getEmployees();
@@ -45,16 +37,11 @@ adminApp.controller('AdminCtrl', ['$scope', '$http', '$location', function ($sco
 }]);
 
 
-adminApp.controller('AddCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+adminApp.controller('AddCtrl', ['$scope', 'resourceFactory', '$location',
+						function ($scope, resourceFactory, $location) {
 
 	$scope.okClick = function () {
-		$http.post('/employee/add', $scope.employee)
-		.success(function(data, status, headers, config) {
-			console.log(data);
-		})
-		.error(function(data, status, headers, config) {
-			alert(data);
-		});
+		resourceFactory.employeeResource.add($scope.employee);
 		$scope.getEmployees();
 		$location.path('/main');
 	}

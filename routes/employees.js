@@ -59,12 +59,11 @@ router.get('/bypin/:pin', function(req, res) {
  * PUT to update employee.
  */
 router.put('/update/:id', function( req, res ) {
-	console.log(req.body);;;
 	var db = req.db;
 	var _id = req.params.id;
 	delete req.body._id;
 	db.collection( 'employees' ).update( { _id: mongoskin.helper.toObjectID(req.params.id)},  req.body, function ( err, result ) {
-		res.send( err === null ? { msg: 'success!' } : { msg: err + '??' } );
+		res.send( err === null ? result : { msg: err + '??' } );
 	});
 });
 
@@ -75,7 +74,7 @@ router.post('/add', function(req, res) {
     var db = req.db;
     db.collection('employees').insert(req.body, function(err, result){
         res.send(
-            (err === null) ? { msg: '' } : { msg: err }
+            (err === null) ? result[0] : { msg: err }	// for some reason, result is an array(??)
         );
     });
 });
