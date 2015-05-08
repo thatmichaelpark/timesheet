@@ -15,7 +15,7 @@ angular.module('resourceModule', ['ngResource'])
 			{
 				get: { method : 'GET', url : baseEmployeeUrl + '/:_id' },
 				getbypin: { method : 'GET', url : baseEmployeeUrl + 'bypin/:pin' },
-				active: { method : 'GET', url : baseEmployeeUrl + 'active/' },
+				getActive: { method : 'GET', url : baseEmployeeUrl + 'active/', isArray: true },
 				add: { method : 'POST', url : baseEmployeeUrl + 'add/' },
 				update: { method : 'PUT', url : baseEmployeeUrl + 'update/:_id' }
 			}

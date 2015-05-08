@@ -1,2 +1,5 @@
-Reports!
-	<button ng-click="mainClick()">Return to main</button>
+<div ng-controller="reportCtrl">
+	<select ng-model="currentEmployee" ng-options="employee.name for employee in activeEmployees" ng-change="employeeChanged()"></select>
+	Reports!
+		<button ng-click="mainClick()">Return to main</button>
+</div>
