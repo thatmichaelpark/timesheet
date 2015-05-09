@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="listApp">
+	<head>
+		<title>List o' times</title>
+		<script src="scripts/angular.js"></script>
+		<script src="scripts/angular-resource.js"></script>
+		<script src="resourcefactory.js"></script>
+		<script src="list.js"></script>
+	</head>
+	<body ng-controller="ListCtrl">
+		<table ng-controller="sortCtrl">
+			<thead>
+				<tr>
+					<th ng-click="sortBy('emp_id')">emp_id</th>
+					<th ng-click="sortBy('date')">date</th>
+					<th>yyyymmdd</th>
+					<th>in1</th>
+					<th>out1</th>
+					<th>in2</th>
+					<th>out2</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="time in times | orderBy: predicate">
+					<td>{{time.emp_id}}</td>
+					<td>{{time.date | date:"longDate"}}</td>
+					<td>{{time.yyyymmdd}}</td>
+					<td>{{time.times[0] | date:"yyyyMMdd [hh:mma]"}}</td>
+					<td>{{time.times[1] | date:"yyyyMMdd [hh:mma]"}}</td>
+					<td>{{time.times[2] | date:"yyyyMMdd [hh:mma]"}}</td>
+					<td>{{time.times[3] | date:"yyyyMMdd [hh:mma]"}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<button ng-click="refreshClick()">Refresh</button>
+	</body>
+</html>

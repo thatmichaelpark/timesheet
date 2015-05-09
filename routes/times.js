@@ -5,11 +5,19 @@ var mongoskin = require('mongoskin');
  * GET time
  */
 
-/*
-router.get('/:yyyymmdd', function(req, res) {
-	res.json({msg: 'no emp id'});
+router.get('/', function(req, res) {
+	var db = req.db;
+	db.collection('times')
+		.find({}).toArray(function (err, items) {
+		if (err) {
+			res.status(400).json({msg: err.code});;;
+		} else {
+		console.log(items);;;
+			res.json(items);
+		}
+	})
 });
-*/
+
 
 router.get('/:emp_id/:yyyymmdd', function(req, res) {
 	var db = req.db;
@@ -34,6 +42,24 @@ router.get('/:emp_id/:yyyymmdd', function(req, res) {
 			}
 		}
 	});
+});
+
+router.get('/:emp_id/:yyyymmdd0/:yyyymmdd1', function(req, res) {
+	var db = req.db;
+	console.log(req.params.yyyymmdd0);;;
+	console.log(req.params.yyyymmdd1);;;
+	
+	db.collection('times')
+		.find({ $and: [/*{ emp_id: req.params.emp_id },*/
+						{ yyyymmdd: { $gte: req.params.yyyymmdd0}},
+						{ yyyymmdd: { $lt: req.params.yyyymmdd1}}]}).toArray(function (err, items) {
+		if (err) {
+			res.status(400).json({msg: err.code});;;
+		} else {
+		console.log(items);;;
+			res.json(items);
+		}
+	})
 });
 
 /*

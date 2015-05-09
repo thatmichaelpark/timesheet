@@ -60,7 +60,8 @@ angular.module('weekModule', ['resourceModule'])
 	return {
 		data: data,
 		getCurrentWeek: getCurrentWeek,
-		clockIt: clockIt
+		clockIt: clockIt,
+		yyyymmdd: yyyymmdd
 	}
 	
 	

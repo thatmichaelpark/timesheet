@@ -38,6 +38,9 @@ timeclockApp.controller('KeypadCtrl', ['$scope', 'resourceFactory', function ($s
 				alert('Employee is inactive');
 				$scope.input = '';
 			}
+		}).catch(function (e) {
+			alert('Invalid PIN');
+			$scope.input = '';
 		});
 	};
 	

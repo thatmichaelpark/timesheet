@@ -5,9 +5,10 @@ angular.module('resourceModule', ['ngResource'])
 
 .factory( 'resourceFactory', function ( $resource, baseTimeUrl, baseEmployeeUrl ) {
 	return {
-		timeResource: $resource( baseTimeUrl, {emp_id: '@emp_id', yyyymmdd: '@yyyymmdd'},
+		timeResource: $resource( baseTimeUrl, {emp_id: '@emp_id', yyyymmdd: '@yyyymmdd', yyyymmdd0: '@yyyymmdd0', yyyymmdd1: '@yyyymmdd1'},
 			{
 				get: { method : 'GET', url : baseTimeUrl + ':emp_id/:yyyymmdd' },
+				getRange: { method: 'GET', url: baseTimeUrl + ':emp_id/:yyyymmdd0/:yyyymmdd1', isArray: true },
 				save: { method : 'POST', url : baseTimeUrl + 'save/' }
 			}
 		),
