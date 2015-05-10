@@ -14,4 +14,14 @@ angular.module('adminApp').controller('reportCtrl', function ($scope, resourceFa
 			yyyymmdd1: weekService.yyyymmdd(d1)
 		});
 	})
+	
+	$scope.weekService = weekService;
+	
+	var offset = 0;
+	weekService.getPayPeriod(new Date(), offset);
+	
+	$scope.periodClick = function (d) {
+		offset += d;
+		weekService.getPayPeriod(new Date(), offset);
+	}
 });

@@ -57,11 +57,35 @@ angular.module('weekModule', ['resourceModule'])
 		data.canClockIn = data.canClockOut = false;
 	}
 	
+	function getPayPeriod(now, offset) {
+		var start, end;
+		var midStart = 16;					// [1..midStart-1], [midStart..eom]
+		if (now.getMonth() == 1) {	// February is short
+			midStart = 15;
+		}
+		if (now.getDate() < midStart) {
+			start = new Date(now.getFullYear(), now.getMonth(), 1);
+			end = new Date(now.getFullYear(), now.getMonth(), midStart - 1);
+		} else {
+			start = new Date(now.getFullYear(), now.getMonth(), midStart);
+			end = new Date(now.getFullYear(), now.getMonth()+1, 0);
+		}
+		if (offset === 0) {
+			data.periodStart = start;
+			data.periodEnd = end;
+		} else if (offset < 0) {
+			getPayPeriod(addDays(start, -1), offset+1);
+		} else {	// offset > 0
+			getPayPeriod(addDays(end, 1), offset-1);
+		}
+	}
+	
 	return {
 		data: data,
 		getCurrentWeek: getCurrentWeek,
 		clockIt: clockIt,
-		yyyymmdd: yyyymmdd
+		yyyymmdd: yyyymmdd,
+		getPayPeriod: getPayPeriod
 	}
 	
 	

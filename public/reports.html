@@ -1,5 +1,13 @@
 <div ng-controller="reportCtrl">
 	<select ng-model="currentEmployee" ng-options="employee.name for employee in activeEmployees" ng-change="employeeChanged()"></select>
 	Reports!
-		<button ng-click="mainClick()">Return to main</button>
+	<div>
+		<button ng-click="periodClick(-1)">Prev</button>
+		<button ng-click="periodClick(1)">Next</button>
+	</div>
+	<div>
+		{{weekService.data.periodStart | date}}
+		{{weekService.data.periodEnd | date}}
+	</div>
+	<button ng-click="mainClick()">Return to main</button>
 </div>
