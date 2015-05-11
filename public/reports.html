@@ -9,5 +9,20 @@
 		{{weekService.data.periodStart | date}}
 		{{weekService.data.periodEnd | date}}
 	</div>
+	<div>
+		<table>
+			<thead>
+			</thead>
+			<tbody>
+				<tr ng-repeat="day in payPeriod">
+					<td>{{day.date | date}}</td>
+					<td>{{(day.times[0] | date:"h:mma") || '...'}}</td>
+					<td>{{(day.times[1] | date:"h:mma") || '...'}}</td>
+					<td>{{(day.times[2] | date:"h:mma") || '...'}}</td>
+					<td>{{(day.times[3] | date:"h:mma") || '...'}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<button ng-click="mainClick()">Return to main</button>
 </div>

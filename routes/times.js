@@ -50,9 +50,9 @@ router.get('/:emp_id/:yyyymmdd0/:yyyymmdd1', function(req, res) {
 	console.log(req.params.yyyymmdd1);;;
 	
 	db.collection('times')
-		.find({ $and: [/*{ emp_id: req.params.emp_id },*/
+		.find({ $and: [{ emp_id: req.params.emp_id },
 						{ yyyymmdd: { $gte: req.params.yyyymmdd0}},
-						{ yyyymmdd: { $lt: req.params.yyyymmdd1}}]}).toArray(function (err, items) {
+						{ yyyymmdd: { $lte: req.params.yyyymmdd1}}]}).toArray(function (err, items) {
 		if (err) {
 			res.status(400).json({msg: err.code});;;
 		} else {

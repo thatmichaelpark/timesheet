@@ -4,16 +4,6 @@ angular.module('adminApp').controller('reportCtrl', function ($scope, resourceFa
 	var timeResource = resourceFactory.timeResource;
 	
 	$scope.activeEmployees = employeeResource.getActive();
-	$scope.activeEmployees.$promise.then(function () {
-		var _id = $scope.activeEmployees[0]._id;
-		var d0 = new Date('2015-05-01');
-		var d1 = new Date('2015-05-16');
-		timeResource.getRange({
-			emp_id: _id,
-			yyyymmdd0: weekService.yyyymmdd(d0),
-			yyyymmdd1: weekService.yyyymmdd(d1)
-		});
-	})
 	
 	$scope.weekService = weekService;
 	
@@ -23,5 +13,19 @@ angular.module('adminApp').controller('reportCtrl', function ($scope, resourceFa
 	$scope.periodClick = function (d) {
 		offset += d;
 		weekService.getPayPeriod(new Date(), offset);
+		getPeriod();
+	}
+	
+	$scope.employeeChanged = function () {
+		getPeriod();
+	}
+	
+	function getPeriod() {
+		var _id = $scope.currentEmployee._id;
+		$scope.payPeriod = timeResource.getRange({
+			emp_id: _id,
+			yyyymmdd0: weekService.yyyymmdd(weekService.data.periodStart),
+			yyyymmdd1: weekService.yyyymmdd(weekService.data.periodEnd)
+		});
 	}
 });
