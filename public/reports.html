@@ -1,27 +1,34 @@
 <div ng-controller="reportCtrl">
 	<select ng-model="currentEmployee" ng-options="employee.name for employee in activeEmployees" ng-change="employeeChanged()"></select>
-	Reports!
+	<div>
+		<h2>
+			{{weekService.data.periodStart | date}} to {{weekService.data.periodEnd | date}}
+		</h2>
+	</div>
 	<div>
 		<button ng-click="periodClick(-1)">Prev</button>
 		<button ng-click="periodClick(1)">Next</button>
 	</div>
 	<div>
-		{{weekService.data.periodStart | date}}
-		{{weekService.data.periodEnd | date}}
-	</div>
-	<div>
 		<table>
 			<thead>
+				<th class="day"></th>		
+				<th class="date"></th>		
+				<th class="time">In</th>
+				<th class="time">Out</th>
+				<th class="time">In</th>
+				<th class="time">Out</th>
+				<th class="total">Total</th>
 			</thead>
 			<tbody>
 				<tr ng-repeat="day in payPeriod">
-					<td>{{day.date | date:"EEE"}}</td>
-					<td>{{day.date | date}}</td>
-					<td>{{(day.times[0] | date:"h:mma") || '...'}}</td>
-					<td>{{(day.times[1] | date:"h:mma") || '...'}}</td>
-					<td>{{(day.times[2] | date:"h:mma") || '...'}}</td>
-					<td>{{(day.times[3] | date:"h:mma") || '...'}}</td>
-					<td>{{day.dailyTotal | number:2}}</td>
+					<td class="day">{{day.date | date:"EEE"}}</td>
+					<td class="longdate">{{day.date | date}}</td>
+					<td class="time">{{(day.times[0] | date:"h:mma") || '...'}}</td>
+					<td class="time">{{(day.times[1] | date:"h:mma") || '...'}}</td>
+					<td class="time">{{(day.times[2] | date:"h:mma") || '...'}}</td>
+					<td class="time">{{(day.times[3] | date:"h:mma") || '...'}}</td>
+					<td class="total">{{day.dailyTotal | number:2}}</td>
 				</tr>
 				<tr>
 					<td></td>

@@ -17,7 +17,7 @@ div {
 	text-align: center;
 }
 
-button {
+#timeclock button {
     width: 80px;
     height: 80px;
     margin: 3px;
@@ -28,12 +28,12 @@ button {
 	border: solid #888 3px;
 }
 
-button:disabled {
+#timeclock button:disabled {
     background: #eee;
 	border-color: #bbb;
 }
 
-button.wide {
+#timeclock button.wide {
     width: 160px;
 }
 
@@ -46,4 +46,20 @@ table {
 	margin: auto;
 	width: 500px;
 	border: solid black 1px;
+}
+
+table .day {
+	width: 10em;
+}
+
+table .date {
+	width: 10em;
+}
+
+table .longdate {
+	width: 25em;
+}
+
+table .time {
+	width: 10em;
 }

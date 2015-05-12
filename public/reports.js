@@ -51,9 +51,12 @@ angular.module('adminApp').controller('reportCtrl', function ($scope, $filter, r
 				if (t1 < 0) {
 					throw 'Clock-out before clock-in on ' + $filter('date')(pp.date);
 				}
-				var t2 = new Date(times[3]).getTime() - new Date(times[2]).getTime();
-				if (t2 < 0) {
-					throw 'Clock-out before clock-in on ' + $filter('date')(pp.date);
+				var t2 = 0;
+				if (times.length ===4 ) {
+					var t2 = new Date(times[3]).getTime() - new Date(times[2]).getTime();
+					if (t2 < 0) {
+						throw 'Clock-out before clock-in on ' + $filter('date')(pp.date);
+					}
 				}
 				return (t1 + t2) / 1000 / 60 / 60;
 			}

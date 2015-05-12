@@ -2,6 +2,7 @@
 <html ng-app="listApp">
 	<head>
 		<title>List o' times</title>
+		<link href="timeclock.css" rel="stylesheet">
 		<script src="scripts/angular.js"></script>
 		<script src="scripts/angular-resource.js"></script>
 		<script src="resourcefactory.js"></script>
@@ -12,12 +13,12 @@
 			<thead>
 				<tr>
 					<th ng-click="sortBy('emp_id')">emp_id</th>
-					<th ng-click="sortBy('date')">date</th>
-					<th>yyyymmdd</th>
-					<th>in1</th>
-					<th>out1</th>
-					<th>in2</th>
-					<th>out2</th>
+					<th class="date" ng-click="sortBy('date')">date</th>
+					<th class="time">yyyymmdd</th>
+					<th class="time">in1</th>
+					<th class="time">out1</th>
+					<th class="time">in2</th>
+					<th class="time">out2</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,6 +33,6 @@
 				</tr>
 			</tbody>
 		</table>
-		<button ng-click="refreshClick()">Refresh</button>
+		<button class="wide" ng-click="refreshClick()">Refresh</button>
 	</body>
 </html>
