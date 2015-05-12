@@ -10,8 +10,7 @@ router.get('/', function(req, res) {
 	var db = req.db;
 	db.collection('employees').find().toArray(function (err, items) {
 		if (err) {
-			console.log(err);;;
-			res.status(400).json({msg: err.code});;;
+			res.status(400).json({msg: err.code});
 		} else {
 			res.json(items);
 		}
@@ -22,8 +21,7 @@ router.get('/active', function(req, res) {
 	var db = req.db;
 	db.collection('employees').find({active: true}).toArray(function (err, items) {
 		if (err) {
-			console.log(err);;;
-			res.status(400).json({msg: err.code});;;
+			res.status(400).json({msg: err.code});
 		} else {
 			res.json(items);
 		}
@@ -34,8 +32,7 @@ router.get('/:id', function(req, res) {
 	var db = req.db;
 	db.collection('employees').findOne({_id: mongoskin.helper.toObjectID(req.params.id)}, function (err, result) {
 		if (err) {
-			console.log(err);;;
-			res.status(400).json({msg: err.code});;;
+			res.status(400).json({msg: err.code});
 		} else {
 			res.json(result);
 		}
@@ -46,9 +43,9 @@ router.get('/bypin/:pin', function(req, res) {
 	var db = req.db;
 	db.collection('employees').findOne({pin: req.params.pin}, function (err, result) {
 		if (err) {
-			res.status(400).json({msg: err.code});;;
+			res.status(400).json({msg: err.code});
 		} else if (!result) {
-			res.status(400).json({msg: 'Invalid PIN'});;;
+			res.status(400).json({msg: 'Invalid PIN'});
 		} else {
 			res.json(result);
 		}

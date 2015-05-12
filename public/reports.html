@@ -10,7 +10,7 @@
 		<button ng-click="periodClick(1)">Next</button>
 	</div>
 	<div>
-		<table>
+		<table class="small">
 			<thead>
 				<th class="day"></th>		
 				<th class="date"></th>		
@@ -21,7 +21,7 @@
 				<th class="total">Total</th>
 			</thead>
 			<tbody>
-				<tr ng-repeat="day in payPeriod">
+				<tr ng-repeat="day in payPeriod | orderBy: 'date'">
 					<td class="day">{{day.date | date:"EEE"}}</td>
 					<td class="longdate">{{day.date | date}}</td>
 					<td class="time">{{(day.times[0] | date:"h:mma") || '...'}}</td>

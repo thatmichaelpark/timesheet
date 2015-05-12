@@ -10,9 +10,8 @@ router.get('/', function(req, res) {
 	db.collection('times')
 		.find({}).toArray(function (err, items) {
 		if (err) {
-			res.status(400).json({msg: err.code});;;
+			res.status(400).json({msg: err.code});
 		} else {
-		console.log(items);;;
 			res.json(items);
 		}
 	})
@@ -24,7 +23,7 @@ router.get('/:emp_id/:yyyymmdd', function(req, res) {
 	db.collection('times')
 		.findOne({emp_id: req.params.emp_id, yyyymmdd: req.params.yyyymmdd}, function (err, result) {
 		if (err) {
-			res.status(400).json({msg: err.code});;;
+			res.status(400).json({msg: err.code});
 		} else {
 			if (result) {
 				res.json(result);
@@ -46,17 +45,14 @@ router.get('/:emp_id/:yyyymmdd', function(req, res) {
 
 router.get('/:emp_id/:yyyymmdd0/:yyyymmdd1', function(req, res) {
 	var db = req.db;
-	console.log(req.params.yyyymmdd0);;;
-	console.log(req.params.yyyymmdd1);;;
 	
 	db.collection('times')
 		.find({ $and: [{ emp_id: req.params.emp_id },
 						{ yyyymmdd: { $gte: req.params.yyyymmdd0}},
 						{ yyyymmdd: { $lte: req.params.yyyymmdd1}}]}).toArray(function (err, items) {
 		if (err) {
-			res.status(400).json({msg: err.code});;;
+			res.status(400).json({msg: err.code});
 		} else {
-		console.log(items);;;
 			res.json(items);
 		}
 	})

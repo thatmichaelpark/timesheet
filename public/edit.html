@@ -14,7 +14,7 @@
 		<button ng-if="editing" ng-click="cancelClick()">Cancel</button>
 	</div>
 	<div ng-controller="TimeEditCtrl">
-		<table>
+		<table class="small">
 			<thead>
 				<tr>
 					<th>Day</th>
@@ -31,7 +31,7 @@
 					<td>{{day.date | date:"MM/dd"}}</td>
 					<td>
 						<span ng-if="!editing()">{{(day.times[0] | date:"h:mma") || '...'}}</span>
-						<input ng-if="editing()" ng-model="times[0]" size="8"></input>
+						<input ng-if="editing()" ng-model="times[0]" size="8" focus></input>
 					</td>
 					<td>
 						<span ng-if="!editing()">{{(day.times[1] | date:"h:mma") || '...'}}</span>

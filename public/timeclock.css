@@ -44,8 +44,11 @@ div {
 
 table {
 	margin: auto;
-	width: 500px;
 	border: solid black 1px;
+}
+
+table.small {
+	width: 500px;
 }
 
 table .day {
@@ -58,6 +61,10 @@ table .date {
 
 table .longdate {
 	width: 25em;
+}
+
+table .xlongdate {
+	width: 125em;
 }
 
 table .time {
