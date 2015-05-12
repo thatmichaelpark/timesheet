@@ -15,11 +15,22 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="day in payPeriod">
+					<td>{{day.date | date:"EEE"}}</td>
 					<td>{{day.date | date}}</td>
 					<td>{{(day.times[0] | date:"h:mma") || '...'}}</td>
 					<td>{{(day.times[1] | date:"h:mma") || '...'}}</td>
 					<td>{{(day.times[2] | date:"h:mma") || '...'}}</td>
 					<td>{{(day.times[3] | date:"h:mma") || '...'}}</td>
+					<td>{{day.dailyTotal | number:2}}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>{{periodTotal | number:2}}</td>
 				</tr>
 			</tbody>
 		</table>
