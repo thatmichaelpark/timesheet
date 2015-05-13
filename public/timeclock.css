@@ -1,3 +1,4 @@
+@media screen {
 #timeclock {
 }
 
@@ -69,4 +70,27 @@ table .xlongdate {
 
 table .time {
 	width: 10em;
+}
+
+table .total {
+	width: 10em;
+	text-align: right;
+}
+
+.print-only { display: none; }
+}
+
+@media print {
+.non-printing { display: none; }
+
+table {
+	text-align: center;
+}
+
+table .total {
+	width: 10em;
+	text-align: right;
+}
+
+
 }

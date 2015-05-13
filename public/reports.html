@@ -1,11 +1,12 @@
 <div ng-controller="reportCtrl">
-	<select ng-model="currentEmployee" ng-options="employee.name for employee in activeEmployees" ng-change="employeeChanged()"></select>
+	<select ng-model="currentEmployee" ng-options="employee.name for employee in activeEmployees" ng-change="employeeChanged()" class="non-printing"></select>
 	<div>
+		<h1 class="print-only">{{currentEmployee.name}}</h1>
 		<h2>
 			{{weekService.data.periodStart | date}} to {{weekService.data.periodEnd | date}}
 		</h2>
 	</div>
-	<div>
+	<div class="non-printing">
 		<button ng-click="periodClick(-1)">Prev</button>
 		<button ng-click="periodClick(1)">Next</button>
 	</div>
@@ -36,11 +37,11 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
+					<td>Total</td>
 					<td>{{periodTotal | number:2}}</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<button ng-click="mainClick()">Return to main</button>
+	<button ng-click="mainClick()" class="non-printing">Return to main</button>
 </div>
