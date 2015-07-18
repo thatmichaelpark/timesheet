@@ -60,7 +60,7 @@ router.put('/update/:id', function( req, res ) {
 	var _id = req.params.id;
 	delete req.body._id;
 	db.collection( 'employees' ).update( { _id: mongoskin.helper.toObjectID(req.params.id)},  req.body, function ( err, result ) {
-		res.send( err === null ? result : { msg: err + '??' } );
+		res.sendStatus( err === null ? result : { msg: err + '??' } );
 	});
 });
 
