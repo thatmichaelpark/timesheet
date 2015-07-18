@@ -137,7 +137,7 @@ adminApp.controller('EditableCtrl', ['$scope', '$filter', function ($scope, $fil
 		} else if (ap === 'A' && h === 12) {
 			h = 0;
 		} else {
-			if (h < 9) {
+			if (h < 8 && !ap) {
 				h += 12;
 			}
 		}

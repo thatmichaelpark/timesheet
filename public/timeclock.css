@@ -61,11 +61,7 @@ table .date {
 }
 
 table .longdate {
-	width: 25em;
-}
-
-table .xlongdate {
-	width: 125em;
+	width: 28em;
 }
 
 table .time {
@@ -83,14 +79,12 @@ table .total {
 @media print {
 .non-printing { display: none; }
 
-table {
-	text-align: center;
-}
-
 table .total {
-	width: 10em;
 	text-align: right;
 }
 
+table {
+	text-align: center;
+}
 
 }

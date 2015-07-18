@@ -1,5 +1,6 @@
-var baseUrl = 'http://localhost/';
-//var baseUrl = 'http://10.0.20.101/';
+//var baseUrl = 'http://localhost/';
+var baseUrl = 'http://10.0.20.101/';
+//var baseUrl = 'http://192.168.1.2/';
 angular.module('resourceModule', ['ngResource'])
 .constant( 'baseEmployeeUrl', baseUrl + 'employee/' )
 .constant( 'baseTimeUrl', baseUrl + 'times/' )
