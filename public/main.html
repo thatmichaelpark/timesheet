@@ -1,6 +1,6 @@
 <h2>Employees</h2>
 <table>
-	<tr ng-repeat="employee in employees | orderBy:'name'">
+	<tr ng-repeat="employee in employees | orderBy:'name'" ng-show="employee.active || showAllCheckbox">
 		<td>{{employee.name}}</td>
 		<td>{{employee.pin}}</td>
 		<td>{{employee.active ? 'Active' : 'Inactive'}}</td>
@@ -10,3 +10,4 @@
 <button ng-click="addClick()">Add Employee</button>
 <button ng-click="reportsClick()">Generate Reports</button>
 
+											Show All <input type="checkbox" ng-model="showAllCheckbox">
