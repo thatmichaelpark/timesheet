@@ -76,9 +76,18 @@ adminApp.controller('EditableCtrl', ['$scope', '$filter', function ($scope, $fil
 	$scope.okClick = function (day) {
 		try {
 			blah(day);
-			day.$save();
-			day.$get();	// heck. $save can create or update; if it creates, 
-						// we need to $get to get an _id so that the next $save won't create a duplicate
+			var _id = day._id;						// $save is going to delete ._id
+													//  so save _id (might be undefined if new)
+			day.$save().then(function(data) {		// create or update
+				if (angular.isDefined(data._id)) {	// data._id is defined after a create
+					day._id = data._id;
+				} else {							// data._id is undefined after an update
+					day._id = _id;					//  so restore the old _id.
+				}
+			}, function(error) {
+				console.log('error');
+				console.log(error);
+			});
 			editing = false;
 			$scope.bumpPendingEdits(-1);
 		} catch (e) {
