@@ -28,6 +28,10 @@ adminApp.controller('AdminCtrl', ['$scope', '$location', 'resourceFactory',
 	$scope.reportsClick = function () {
 		$location.path('/reports');
 	}
+
+	$scope.dailyClick = function () {
+		$location.path('/daily');
+	}
 	
 	$scope.mainClick = function () {
 		$scope.getEmployees();
@@ -67,6 +71,7 @@ adminApp.config(function ($routeProvider, $locationProvider) {
 	$routeProvider.when('/main', { templateUrl: '/main.html' } );
 	$routeProvider.when('/edit/:emp_id', { templateUrl: '/edit.html' } );
 	$routeProvider.when('/add', { templateUrl: '/add.html' } );
+	$routeProvider.when('/daily', { templateUrl: '/daily.html' } );
 	$routeProvider.when('/reports', { templateUrl: '/reports.html' } );
 	$routeProvider.otherwise( { templateUrl: '/main.html' } );
 });

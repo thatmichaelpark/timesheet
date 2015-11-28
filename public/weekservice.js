@@ -85,6 +85,7 @@ angular.module('weekModule', ['resourceModule'])
 		getCurrentWeek: getCurrentWeek,
 		clockIt: clockIt,
 		yyyymmdd: yyyymmdd,
+		addDays: addDays,
 		getPayPeriod: getPayPeriod
 	}
 	

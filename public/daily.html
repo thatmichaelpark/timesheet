@@ -1,0 +1,43 @@
+<div ng-controller="dailyCtrl">
+	<div>
+		<h1>Daily Activity</h1>
+		<h2>
+			{{today | date}}
+		</h2>
+	</div>
+	<div class="non-printing">
+		<button ng-click="dayClick(-1)">Prev</button>
+		<button ng-click="dayClick(1)">Next</button>
+	</div>
+	<div>
+		<table class="small">
+			<thead>
+				<th>Employee</th>		
+				<th class="time">In</th>
+				<th class="time">Out</th>
+				<th class="time">In</th>
+				<th class="time">Out</th>
+				<th class="total">Total</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="day in dailyRecords | orderBy: day.name">
+					<td class="longdate">{{day.name}}</td>
+					<td class="time">{{(day.times[0] | date:"h:mma") || '...'}}</td>
+					<td class="time">{{(day.times[1] | date:"h:mma") || '...'}}</td>
+					<td class="time">{{(day.times[2] | date:"h:mma") || '...'}}</td>
+					<td class="time">{{(day.times[3] | date:"h:mma") || '...'}}</td>
+					<td class="total">{{day.dailyHours | number:2}}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>Total</td>
+					<td class="total">{{dailyTotal | number:2}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<button ng-click="mainClick()" class="non-printing">Return to main</button>
+</div>

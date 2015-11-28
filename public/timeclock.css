@@ -2,16 +2,20 @@
 #timeclock {
 }
 
+#password {
+	font-size: 35pt;
+}
+
 #date {
-	font-size: 15pt;
+	font-size: 35pt;
 }
 
 #time {
-	font-size: 25pt;
+	font-size: 55pt;
 }
 
 #name {
-	font-size: 25pt;
+	font-size: 35pt;
 }
 
 div {
@@ -19,12 +23,12 @@ div {
 }
 
 #timeclock button {
-    width: 80px;
-    height: 80px;
+    width: 180px;
+    height: 180px;
     margin: 3px;
     background: #ccc;
 	color: white;
-	font-size: 18pt;
+	font-size: 38pt;
 	border-radius: 40px;
 	border: solid #888 3px;
 }
@@ -35,12 +39,16 @@ div {
 }
 
 #timeclock button.wide {
-    width: 160px;
+    width: 360px;
 }
 
 #keypad button:active {
 	color: black;
 	background: #666;
+}
+
+.timecardtable {
+	font-size: 20pt;
 }
 
 table {

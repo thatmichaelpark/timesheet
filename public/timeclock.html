@@ -5,6 +5,7 @@
 		<link href="timeclock.css" rel="stylesheet">
 		<script src="scripts/angular.js"></script>
 		<script src="scripts/angular-resource.js"></script>
+		<script src="fastclick.js"></script>
 		<script src="timeclock.js"></script>
 		<script src="employeecard.js"></script>
 		<script src="weekservice.js"></script>
@@ -20,5 +21,12 @@
 			</div>
 			<ng-include src="view"></ng-include>
 		</div>
+		<script>
+		if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+		</script>
 	</body>
 </html>
