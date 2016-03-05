@@ -26,8 +26,8 @@
 		<button ng-click="addWeek(-1)">&#8679;</button>
 		<button ng-click="addWeek(1)">&#8681;</button>
 	</div>
-	<button class="wide" ng-disabled="!weekService.data.canClockIn" ng-click="weekService.clockIt()">Clock In</button>
-	<button class="wide" ng-disabled="!weekService.data.canClockOut" ng-click="weekService.clockIt()">Clock Out</button>
+	<button class="wide" ng-disabled="!weekService.data.canClockIn" ng-click="clockIt()">Clock In</button>
+	<button class="wide" ng-disabled="!weekService.data.canClockOut" ng-click="clockIt()">Clock Out</button>
 	<button class="square" ng-click="okClick()">OK</button>
 
 </div>
