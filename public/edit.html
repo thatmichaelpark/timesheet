@@ -23,6 +23,7 @@
 					<th>Out</th>
 					<th>In</th>
 					<th>Out</th>
+					<th>Total</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,10 +47,23 @@
 						<input ng-if="editing()" ng-model="times[3]" size="8"></input>
 					</td>
 					<td>
+						{{(day.dailyTotal | number:2) || '...'}}
+					</td>
+					<td>
 						<button ng-if="!editing()" ng-click="editClick(day)">Edit</button>
 						<button ng-if="editing()" ng-click="okClick(day)">OK</button>
 						<button ng-if="editing()" ng-click="cancelClick(day)">Cancel</button>
 					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>{{weekService.data.weeklyTotal | number:2}}</td>
+					<td></td>
 				</tr>
 			</tbody>
 		</table>

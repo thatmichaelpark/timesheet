@@ -1,12 +1,40 @@
 var adminApp = angular.module('adminApp', ['resourceModule', 'weekModule', 'ngResource', 'ngRoute']);
 
-adminApp.controller('AdminCtrl', ['$scope', '$location', 'resourceFactory', 
-						function ($scope, $location, resourceFactory) {
+adminApp.controller('AdminCtrl', ['$scope', '$location', 'resourceFactory', 'weekService',
+						function ($scope, $location, resourceFactory, weekService) {
 
 	var employeeResource = resourceFactory.employeeResource;
 	
+	var timeResource = resourceFactory.timeResource;
+
 	$scope.getEmployees = function () {
-		$scope.employees = employeeResource.query();
+		$scope.employees = employeeResource.query()
+		$scope.employees.$promise.then(function (employees) {
+			employees.forEach(function (employee) {
+				var today = new Date();
+				var d = {
+					emp_id: employee._id,
+					yyyymmdd: weekService.yyyymmdd(today)
+				};
+				employee.data = timeResource.get( d );
+				employee.data.$promise.then(function (x) {
+					if (x.times.length) {
+						var t, t0, t1;
+						t0 = new Date(x.times[0]);
+						t1 = x.times[1] ? new Date(x.times[1]) : new Date();
+						t = t1.getTime() - t0.getTime();
+						if (x.times.length >= 2) {
+							t0 = new Date(x.times[2]);
+							t1 = x.times[3] ? new Date(x.times[3]) : new Date();
+							t += t1.getTime() - t0.getTime();
+						}
+						employee.data.currentHours = (t / 1000 / 60 / 60).toFixed(2);
+					} else {
+						employee.data.currentHours = '';
+					}
+				});
+			});
+		});
 	};
 
 	$scope.getEmployee = function (id) {

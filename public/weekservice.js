@@ -14,6 +14,8 @@ angular.module('weekModule', ['resourceModule'])
 		var day = today.getDay() == 0 ? 6 : today.getDay() - 1;	// 0-6 Sun-Sat -> 0-6 Mon-Sun
 		var startOfWeek = addDays(today, -day + offset * 7);
 		week = [];
+		data.weeklyTotal = 0;
+		
 		var j = -day + offset * 7;
 		for (var i=0; i<7; ++i) {
 			var d = {
@@ -23,7 +25,7 @@ angular.module('weekModule', ['resourceModule'])
 			d = timeResource.get( d );
 			week.push(d);
 			
-			if (j == 0) {
+			if (j == 0) {	// today
 				d.$promise.then(function (x) {
 					todaysEntry = x;
 					if (todaysEntry.times.length < 4) {
@@ -31,11 +33,32 @@ angular.module('weekModule', ['resourceModule'])
 					} else {
 						data.canClockIn = data.canClockOut = false;
 					}
-				});;;
+					x.dailyTotal = computeDailyTotal(x.times, true);
+				});
+			} else {
+				d.$promise.then(function (x) {
+					x.dailyTotal = computeDailyTotal(x.times, false);
+				});
 			}
 			++j;
 		}
 		data.week = week;
+
+		function computeDailyTotal(times, today) {
+			if (times.length < 2 && !today) {
+				return null;
+			}
+			var t0 = new Date(times[0]);
+			var t1 = times[1] ? new Date(times[1]) : new Date();
+			var total = t1.getTime() - t0.getTime();
+			if (times.length > 2) {
+				t0 = new Date(times[2]);
+				t1 = times[3] ? new Date(times[3]) : new Date();
+				total += t1.getTime() - t0.getTime();
+			}
+			data.weeklyTotal += total / 1000 / 60 / 60;
+			return total / 1000 / 60 / 60;
+		}
 	}
 	
 	function yyyymmdd(d) {

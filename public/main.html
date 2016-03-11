@@ -1,9 +1,17 @@
 <h2>Employees</h2>
 <table>
+	<thead>
+		<th>Name</th>
+		<th>PIN</th>
+		<th>Active?</th>
+		<th>Today's Hours</th>
+		<th></th>
+	</thead>
 	<tr ng-repeat="employee in employees | orderBy:'name'" ng-show="employee.active || showAllCheckbox">
 		<td>{{employee.name}}</td>
 		<td>{{employee.pin}}</td>
 		<td>{{employee.active ? 'Active' : 'Inactive'}}</td>
+		<td>{{employee.data.currentHours}}</td>
 		<td><button ng-click="employeeClick(employee._id)">More</button></td>
 	</tr>
 </table>
