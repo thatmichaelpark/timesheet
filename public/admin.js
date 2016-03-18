@@ -23,7 +23,7 @@ adminApp.controller('AdminCtrl', ['$scope', '$location', 'resourceFactory', 'wee
 						t0 = new Date(x.times[0]);
 						t1 = x.times[1] ? new Date(x.times[1]) : new Date();
 						t = t1.getTime() - t0.getTime();
-						if (x.times.length >= 2) {
+						if (x.times.length > 2) {
 							t0 = new Date(x.times[2]);
 							t1 = x.times[3] ? new Date(x.times[3]) : new Date();
 							t += t1.getTime() - t0.getTime();

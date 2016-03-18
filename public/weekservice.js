@@ -45,7 +45,7 @@ angular.module('weekModule', ['resourceModule'])
 		data.week = week;
 
 		function computeDailyTotal(times, today) {
-			if (times.length < 2 && !today) {
+			if (times.length == 0 || (times.length < 2 && !today)) {
 				return null;
 			}
 			var t0 = new Date(times[0]);
@@ -56,8 +56,9 @@ angular.module('weekModule', ['resourceModule'])
 				t1 = times[3] ? new Date(times[3]) : new Date();
 				total += t1.getTime() - t0.getTime();
 			}
-			data.weeklyTotal += total / 1000 / 60 / 60;
-			return total / 1000 / 60 / 60;
+			total /= 1000 * 60 * 60;
+			data.weeklyTotal += total;
+			return total;
 		}
 	}
 	
